@@ -1,0 +1,675 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "version": "2.0.0",
+    "title": "Future generation",
+    "description": "Online shop for all routes",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "servers": [
+    { "url": "http://localhost:4040/api" },
+    { "url": "https://online-shop-1sss.onrender.com/api" }
+  ],
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "Authorization endpoints"
+    }
+  ],
+  "paths": {
+    "/auth/register": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "User registration",
+        "parameters": [],
+        "requestBody": {
+          "description": "Registration's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing required name field or the field did not pass validation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationResponseBadRequest"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "User with this email is already registered",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationResponseConflict"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/auth/login": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "User login",
+        "parameters": [],
+        "requestBody": {
+          "description": "Login's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing required name field or the field did not pass validation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseBadRequest"
+                }
+              }
+            }
+          },
+
+          "401": {
+            "description": "Email or password is wrong",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseUnauthorized"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/auth/logout": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "User logout",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "204": {
+            "description": "Successful operation",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseUnauthorized"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/google": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Login from google",
+        "parameters": []
+      }
+    },
+
+    "/users/current": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Current User info",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurrentResponse"
+                }
+              }
+            }
+          },
+
+          "401": {
+            "description": "Not authorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseUnauthorized"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "components": {
+    "schemas": {
+      "RegistrationRequest": {
+        "type": "object",
+        "required": ["name", "email", "password"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "User's name",
+            "example": "Mango"
+          },
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password",
+            "example": "qwerty123"
+          }
+        }
+      },
+
+      "RegistrationResponseBadRequest": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Missing required field",
+            "example": "Missing required field"
+          },
+          "code": {
+            "type": "integer",
+            "description": "code",
+            "example": 400
+          }
+        }
+      },
+
+      "RegistrationResponseConflict": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "User with this email is already registered",
+            "example": "User with user@example.com already exist"
+          },
+          "code": {
+            "type": "integer",
+            "description": "code",
+            "example": 409
+          }
+        }
+      },
+
+      "RegistrationResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "created",
+            "example": "created"
+          },
+          "code": {
+            "type": "integer",
+            "description": "code",
+            "example": 201
+          },
+          "user": {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "string",
+                "description": "User's id",
+                "example": "6313700a788308a1f5ee225"
+              },
+
+              "name": {
+                "type": "string",
+                "description": "User's name",
+                "example": "Mango"
+              },
+
+              "email": {
+                "type": "string",
+                "description": "User's email",
+                "format": "email"
+              }
+            }
+          }
+        },
+
+        "example": {
+          "status": "created",
+          "code": 201,
+          "user": {
+            "id": "64dce6cf694abb2cddb0a228",
+            "name": "Mango",
+            "email": "user@example.com"
+          }
+        }
+      },
+
+      "LoginRequest": {
+        "type": "object",
+        "required": ["email", "password"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password",
+            "example": "qwerty123"
+          }
+        }
+      },
+
+      "ResponseBadRequest": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Missing required field",
+            "example": "Missing required field"
+          },
+          "code": {
+            "type": "integer",
+            "description": "code",
+            "example": 400
+          }
+        }
+      },
+
+      "ResponseUnauthorized": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Not auth",
+            "example": "Not auth"
+          },
+          "code": {
+            "type": "integer",
+            "description": "code",
+            "example": 401
+          }
+        }
+      },
+
+      "LoginResponse": {
+        "type": "object",
+
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "success",
+            "example": "success"
+          },
+          "code": {
+            "type": "integer",
+            "description": "code",
+            "example": 200
+          },
+          "data": {
+            "token": {
+              "type": "string",
+              "description": "User's token",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZGRlMzg5ZDY0ZDdhNTNkNDdlYzIwYyIsImlhdCI6MTY5MjI2MzMzNSwiZXhwIjoxNjkyMzQ5NzM1fQ.LLhHZYXTHWpnIo6LaEjVqzh13fEwmHn1BGKP75xzxBw"
+            }
+          }
+        },
+
+        "example": {
+          "status": "success",
+          "code": 200,
+          "data": {
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZGRlMzg5ZDY0ZDdhNTNkNDdlYzIwYyIsImlhdCI6MTY5MjI2MzMzNSwiZXhwIjoxNjkyMzQ5NzM1fQ.LLhHZYXTHWpnIo6LaEjVqzh13fEwmHn1BGKP75xzxBw"
+          }
+        }
+      },
+
+      "CurrentResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "success",
+            "example": "success"
+          },
+          "code": {
+            "type": "integer",
+            "description": "code",
+            "example": 200
+          },
+          "data": {
+            "name": {
+              "type": "string",
+              "description": "User's name",
+              "example": "Mango"
+            },
+            "email": {
+              "type": "string",
+              "description": "User's email",
+              "format": "email"
+            }
+          }
+        },
+
+        "example": {
+          "status": "success",
+          "code": 200,
+          "data": {
+            "name": "Mango",
+            "email": "user@example.com"
+          }
+        }
+      },
+
+      "PostProductRequest": {
+        "type": "object",
+        "required": [
+          "name",
+          "brand",
+          "price",
+          "category",
+          "subcategory",
+          "description",
+          "createdFor",
+          "tags"
+        ],
+        "properties": {
+          "productName": {
+            "type": "string",
+            "description": "Product's name",
+            "example": "Eyeshadow"
+          },
+          "brand": {
+            "type": "string",
+            "description": "Product's brand",
+            "example": "Mary Kay"
+          },
+          "price": {
+            "type": "number",
+            "description": "price of product",
+            "example": 250
+          },
+          "category": {
+            "type": "string",
+            "description": "Product's category",
+            "example": "make-up"
+          },
+          "subcategory": {
+            "type": "string",
+            "description": "Product's subcategory",
+            "example": "eyes"
+          },
+          "image": {
+            "type": "string",
+            "format": "binary",
+            "description": "Product's image"
+          },
+          "description": {
+            "type": "string",
+            "description": "Product's description",
+            "example": "Тіні для вій з легким перламутровим ефектом. Додають погляду свіжості."
+          },
+          "createdFor": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "Gender of the user",
+              "example": "female"
+            },
+            "example": ["female", "male"]
+          }
+        }
+      },
+
+      "PostProductResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "succses",
+            "example": "Succses"
+          },
+          "code": {
+            "type": "integer",
+            "description": "code",
+            "example": 200
+          },
+          "payload": {
+            "type": "object",
+            "properties": {
+              "product": {
+                "type": "object",
+                "properties": {
+                  "productName": {
+                    "type": "string",
+                    "description": "Product's name",
+                    "example": "Lipstick"
+                  },
+                  "brand": {
+                    "type": "string",
+                    "description": "Product's brand",
+                    "example": "Mary Kay"
+                  },
+                  "price": {
+                    "type": "number",
+                    "description": "Price of product",
+                    "example": 250
+                  },
+                  "productImage": {
+                    "type": "object",
+                    "properties": {
+                      "asset_id": {
+                        "type": "string",
+                        "description": "Information about saved image",
+                        "example": "03358c7bded71ffa6bee85bb5c7c271a"
+                      },
+                      "public_id": {
+                        "type": "string",
+                        "description": "Information about saved image",
+                        "example": "cosmetics/a2tvuhmhsiljppxybxzo"
+                      },
+                      "url": {
+                        "type": "string",
+                        "description": "Information about saved image",
+                        "example": "http://res.cloudinary.com/dx1mxvew5/image/upload/v1694428628/cosmetics/a2tvuhmhsiljppxybxzo.jpg"
+                      }
+                    }
+                  },
+
+                  "_id": {
+                    "type": "string",
+                    "description": "id of the book",
+                    "example": "633b1aae155b3020faa54d9e"
+                  }
+                }
+              }
+            }
+          }
+        },
+
+        "example": {
+          "status": "Success",
+          "code": 201,
+          "payload": {
+            "product": {
+              "productName": "Lipstick",
+              "brand": "Mary Kay",
+              "price": 250,
+              "productImage": {
+                "asset_id": "03358c7bded71ffa6bee85bb5c7c271a",
+                "public_id": "cosmetics/a2tvuhmhsiljppxybxzo",
+                "version": 1694428628,
+                "version_id": "c519b39ae1eb1c9a362242d71f5855c0",
+                "signature": "9367002bfe8c9424f513f9fb8e2049c3a696afe1",
+                "width": 640,
+                "height": 491,
+                "format": "jpg",
+                "resource_type": "image",
+                "created_at": "2023-09-11T10:37:08Z",
+                "tags": [],
+                "bytes": 25280,
+                "type": "upload",
+                "etag": "729af264f3bf09d68977be68c947a906",
+                "placeholder": false,
+                "url": "http://res.cloudinary.com/dx1mxvew5/image/upload/v1694428628/cosmetics/a2tvuhmhsiljppxybxzo.jpg",
+                "secure_url": "https://res.cloudinary.com/dx1mxvew5/image/upload/v1694428628/cosmetics/a2tvuhmhsiljppxybxzo.jpg",
+                "folder": "cosmetics",
+                "original_filename": "lipstick-gde9f602b9_640",
+                "api_key": "581754795434256"
+              },
+              "category": "make-up",
+              "subcategory": "lips",
+              "description": "Насичений стійкий колір. Найвдаліший вибір в цьому сезоні",
+              "createdFor": ["female"],
+              "tags": ["lipstick", "cosmetics", " make up"],
+              "_id": "64feedd58b37c6ef7dea95ba",
+              "createdAt": "2023-09-11T10:37:09.426Z",
+              "updatedAt": "2023-09-11T10:37:09.426Z"
+            }
+          }
+        }
+      },
+
+      "GetProductsResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "success",
+            "example": "Success"
+          },
+          "code": {
+            "type": "integer",
+            "description": "code",
+            "example": 200
+          },
+          "payload": {
+            "type": "object",
+            "properties": {
+              "products": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "Book's title",
+                      "example": "The Art of War"
+                    },
+                    "brand": {
+                      "type": "string",
+                      "description": "Product's brand",
+                      "example": "Sun Tzu"
+                    },
+                    "price": {
+                      "type": "number",
+                      "description": "price of product",
+                      "example": 250
+                    },
+                    "rating": {
+                      "type": "integer",
+                      "description": "Product's rating",
+                      "example": 5
+                    },
+
+                    "_id": {
+                      "type": "string",
+                      "description": "id of the book",
+                      "example": "633b1aae155b3020faa54d9e"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+
+        "example": {
+          "status": "Success",
+          "code": 200,
+          "payload": {
+            "products": [
+              {
+                "_id": "64eb286b4b5d9ce55b4f43f3",
+                "name": "Lipstick",
+                "brand": "Mary Kay",
+                "price": 250,
+                "rating": 5,
+                "createdAt": "2023-08-27T10:41:47.751Z",
+                "updatedAt": "2023-08-27T10:41:47.751Z"
+              },
+              {
+                "_id": "64eb286b4b5d9ce55b4f43f3",
+                "name": "Tone for face",
+                "brand": "Mary Kay",
+                "price": 380,
+                "rating": 5,
+                "createdAt": "2023-08-27T10:41:47.751Z",
+                "updatedAt": "2023-08-27T10:41:47.751Z"
+              }
+            ]
+          }
+        }
+      }
+    },
+
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
