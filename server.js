@@ -1,27 +1,23 @@
 const app = require("./src/app");
-// const mongoose = require("mongoose");
-// const crateFolderNotExist = require("./src/helpers/createFolder");
-// mongoose.set("strictQuery", true);
-// require("dotenv").config();
-// const path = require("path");
+const mongoose = require("mongoose");
+const { createFolder } = require("./src/helpers");
+mongoose.set("strictQuery", true);
+require("dotenv").config();
+const path = require("path");
 
-// const { DB_HOST } = process.env;
-// const { PORT = 4040 } = process.env;
-// const UPLOAD_DIR = path.join(process.cwd(), process.env.UPLOAD_DIR);
+const { DB_HOST } = process.env;
+const { PORT = 4040 } = process.env;
+const UPLOAD_DIR = path.join(process.cwd(), process.env.UPLOAD_DIR);
 
-// mongoose
-//   .connect(DB_HOST)
-//   .then(() =>
-//     app.listen(PORT, () => {
-//       crateFolderNotExist(UPLOAD_DIR);
-//       console.log(`Database connection successful on port ${PORT}`);
-//     })
-//   )
-//   .catch((err) => {
-//     console.error(err);
-//     process.exit(1);
-//   });
-
-app.listen(4040, () => {
-  console.log(`Database connection successful on port 4040`);
-});
+mongoose
+  .connect(DB_HOST)
+  .then(() =>
+    app.listen(PORT, () => {
+      createFolder(UPLOAD_DIR);
+      console.log(`Database connection successful on port ${PORT}`);
+    })
+  )
+  .catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
