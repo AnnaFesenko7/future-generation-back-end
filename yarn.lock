@@ -3154,10 +3154,10 @@
     "bson" "^6.2.0"
     "mongodb-connection-string-url" "^3.0.0"
 
-"mongoose@^8.2.0":
-  "integrity" "sha512-la93n6zCYRbPS+c5N9oTDAktvREy5OT9OCljp1Tah0y3+p8UPMTAoabWaLZMdzYruOtF9/9GRf6MasaZjiZP1A=="
-  "resolved" "https://registry.npmjs.org/mongoose/-/mongoose-8.2.0.tgz"
-  "version" "8.2.0"
+"mongoose@^8.2.1":
+  "integrity" "sha512-UgZZbXSJH0pdU936qj3FyVI+sBsMoGowFnL5R/RYrA50ayn6+ZYdVr8ehsRgNxRcMYwoNld5XzHIfkFRJTePEw=="
+  "resolved" "https://registry.npmjs.org/mongoose/-/mongoose-8.2.1.tgz"
+  "version" "8.2.1"
   dependencies:
     "bson" "^6.2.0"
     "kareem" "2.5.1"
