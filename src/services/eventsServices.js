@@ -1,32 +1,30 @@
 const { Event } = require("../models");
 
 const getAll = async () => {
-  const events = await Event.find({});
+  const events = await Event.find({}, "-createdAt -updatedAt");
   return events;
 };
 
-const getById = async (id) => {
-  return await Event.findOne({ _id: id });
+const findByID = async (eventId) => {
+  return await Event.findById(eventId);
 };
 
 const addEvent = async (newEvent) => {
   return await Event.create({ ...newEvent });
 };
 
-// const updateEvent = async (id,  status) => {
-//   return await Event.findByIdAndUpdate(
-//     { _id: id }
-//   );
-// };
+const updateById = async (id, newEvent) => {
+  return await Event.findByIdAndUpdate(id, newEvent, { new: true });
+};
 
-// const removeEvent = async (eventId) => {
-//   await Event.findByIdAndRemove({ _id: eventId });
-// };
+const removeEvent = async (eventId) => {
+  await Event.findByIdAndRemove({ _id: eventId });
+};
 
 module.exports = {
   getAll,
-  getById,
+  findByID,
   addEvent,
-  // updateEvent,
-  // removeEvent,
+  removeEvent,
+  updateById,
 };

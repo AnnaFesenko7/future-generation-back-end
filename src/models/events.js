@@ -1,32 +1,35 @@
-const mongoose = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const { handleMongooseError } = require("../helpers");
 const { eventTypeList } = require("../valuesLists");
-const eventSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true,
+const eventSchema = new Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+    },
+    eventCover: {
+      type: Object,
+    },
+    descriptionEng: {
+      type: String,
+      required: true,
+    },
+    descriptionUkr: {
+      type: String,
+      required: true,
+    },
+    eventType: {
+      type: String,
+      required: true,
+      enum: eventTypeList,
+    },
   },
-  eventCover: {
-    type: Object,
-  },
-  descriptionEng: {
-    type: String,
-    required: true,
-  },
-  descriptionUkr: {
-    type: String,
-    required: true,
-  },
-  eventType: {
-    type: String,
-    required: true,
-    enum: eventTypeList,
-  },
-});
+  { versionKey: false, timestamps: true }
+);
 
 eventSchema.post("save", handleMongooseError);
 
-const Event = mongoose.model("event", eventSchema);
+const Event = model("event", eventSchema);
 
 module.exports = Event;
