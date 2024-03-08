@@ -4,6 +4,9 @@ const checkEmail = async (email) => {
   return await User.findOne({ email });
 };
 
+// const isUserExist = async (id) => {
+//   return await User.findById(id);
+// };
 const register = async (newUser) => {
   return await User.create(newUser);
 };
@@ -16,4 +19,5 @@ module.exports = {
   login,
   checkEmail,
   register,
+  // isUserExist,
 };

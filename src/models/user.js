@@ -34,6 +34,11 @@ const userSchema = new Schema(
       enum: langList,
       default: "ua",
     },
+    userStatus: {
+      type: String,
+      enum: ["user", "admin"],
+      default: "user",
+    },
   },
   { versionKey: false, timestamps: true }
 );
