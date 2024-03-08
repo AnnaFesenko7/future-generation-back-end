@@ -7,10 +7,8 @@ const changeLangSchema = joi.object({
     .required(),
 });
 
-const changeTrainingStatusSchema = joi.object({
-  isTrainingStarted: joi.boolean().required(),
-});
+
 module.exports = {
   changeLangSchema,
-  changeTrainingStatusSchema,
+ 
 };

@@ -2,7 +2,7 @@ const express = require("express");
 const logger = require("morgan");
 const cors = require("cors");
 
-const { eventsRouter } = require("./routes/api");
+const { eventsRouter, authRouter } = require("./routes/api");
 
 const app = express();
 
@@ -20,7 +20,7 @@ app.use(express.json());
 // app.use(express.static("public"));
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-// app.use("/api/auth", authRouter);
+app.use("/api/auth", authRouter);
 app.use("/api/events", eventsRouter);
 // app.use("/api/users", usersRouter);
 

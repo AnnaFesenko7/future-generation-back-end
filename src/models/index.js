@@ -1,7 +1,7 @@
-// const User = require("./user");
+const User = require("./user");
 const Event = require("./events");
 
 module.exports = {
-  // User,
+  User,
   Event,
 };

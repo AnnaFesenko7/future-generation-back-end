@@ -7,7 +7,7 @@ const updateById = async (req, res) => {
   const updatedEvent = await eventServices.updateById(id, { ...req.body });
 
   if (!updatedEvent) {
-    RequestError(404, `Event with id ${id} not found`);
+  throw RequestError(404, `Event with id ${id} not found`);
   }
   res.status(200).json({
     status: "success",

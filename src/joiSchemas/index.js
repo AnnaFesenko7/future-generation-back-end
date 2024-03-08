@@ -1,9 +1,9 @@
-// const auth = require('./authSchemas');
+const authSchemas = require("./authSchemas");
 // const users = require('./userSchemas');
 const eventSchemas = require("./eventSchemas");
 
 module.exports = {
-  // auth,
+  authSchemas,
   // users,
   eventSchemas,
 };
