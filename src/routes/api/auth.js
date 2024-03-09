@@ -9,7 +9,7 @@ router.post("/register", validation(authSchemas.registerSchema), ctrl.register);
 
 router.post("/login", validation(authSchemas.loginSchema), ctrl.login);
 
-// router.get('/logout', authenticate, ctrl.logout);
+router.get("/logout", authenticate, ctrl.logout);
 
 // router.get('/google', ctrl.googleAuth);
 

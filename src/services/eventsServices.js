@@ -1,7 +1,7 @@
 const { Event } = require("../models");
 
-const getAll = async () => {
-  const events = await Event.find({}, "-createdAt -updatedAt");
+const getAll = async (skip, limit) => {
+  const events = await Event.find({}, "-createdAt -updatedAt", { skip, limit });
   return events;
 };
 

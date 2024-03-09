@@ -1,9 +1,9 @@
 const authRouter = require("./auth");
-// const usersRouter = require("./users");
+const usersRouter = require("./users");
 const eventsRouter = require("./events");
 
 module.exports = {
-    authRouter,
-  //   usersRouter,
+  authRouter,
+  usersRouter,
   eventsRouter,
 };

@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
-const { tokenGeneration, RequestError } = require("../../helpers");
+const { tokenProcessor, RequestError } = require("../../helpers");
 const { authServices } = require("../../services");
+const { tokenGeneration } = tokenProcessor;
 
 const login = async (req, res) => {
   const { email, password } = req.body;
