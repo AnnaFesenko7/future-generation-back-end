@@ -8,8 +8,10 @@ const { tokenGeneration } = tokenProcessor;
 const googleRedirect = async (req, res) => {
   const fullUrl = `${req.protocol}://${req.get("host")}${req.originalUrl}`;
   const urlObj = new URL(fullUrl);
+  console.log(urlObj);
   const urlParams = queryString.parse(urlObj.search);
   const code = urlParams.code;
+  console.log("code", code);
   const tokenData = await axios({
     url: `https://oauth2.googleapis.com/token`,
     method: "post",
