@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 const {
   // passwordRegexp,
-  nameRegexp,
+
   emailRegExp,
 } = require("../regularExpressions");
 const { handleMongooseError } = require("../helpers");
@@ -12,7 +12,6 @@ const userSchema = new Schema(
     name: {
       type: String,
       minlength: 2,
-      match: nameRegexp,
     },
     password: {
       type: String,
