@@ -45,7 +45,8 @@ const googleRedirect = async (req, res) => {
   await User.findByIdAndUpdate(profile._id, { token });
 
   return res.redirect(
-    `${process.env.FRONTEND_URL}/login/?token=${token}&name=${name}&avatar=${picture}`
+    // `${process.env.FRONTEND_URL}/login/?token=${token}&name=${name}&avatar=${picture}`
+    `${process.env.FRONTEND_URL}`
   );
 };
 module.exports = googleRedirect;

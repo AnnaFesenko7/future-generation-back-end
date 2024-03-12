@@ -2,7 +2,6 @@ const joi = require("joi");
 
 const {
   // passwordRegexp,
-  nameRegexp,
   emailRegExp,
 } = require("../regularExpressions");
 
