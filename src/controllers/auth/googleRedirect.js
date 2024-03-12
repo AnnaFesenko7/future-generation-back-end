@@ -11,7 +11,7 @@ const googleRedirect = async (req, res) => {
   console.log(urlObj);
   const urlParams = queryString.parse(urlObj.search);
   const code = urlParams.code;
-  console.log("code", code);
+
   const tokenData = await axios({
     url: `https://oauth2.googleapis.com/token`,
     method: "post",
@@ -30,6 +30,7 @@ const googleRedirect = async (req, res) => {
       Authorization: `Bearer ${tokenData.data.access_token}`,
     },
   });
+
   const { email, name, picture } = userData.data;
   let profile = await User.findOne({ email });
 

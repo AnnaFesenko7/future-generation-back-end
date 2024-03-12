@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "powerful-balm-416807",
+  "private_key_id": "5380c2a42ec87062c4ecb8c9d3b1f75fd5b7148d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCqk+vh3gFbldUe\nVE2sYUVJ+LZseIpLgVbmWOZQBV1QR+kGPXcYOy+jLn4BRXpPU62BgPGABaTIYDGp\njwnxwB0HMLBBotm6oB3LiW+1yEEJW9TPY7/h/JcvJP60Ff3s3AzkrMBD78GfomOg\nH940jVd/XINR4aCs7kp5E1KC2r4dlOzln90AdQBYZ2Eyqq7YsWAHsLHUclcU/rUs\njloQ37JGDZ0+MB2Ooqg6eIEfwmtuKl2a5zhXOjfYBFnk8lXdiGTEjriHTnMlO+WB\njYWmFd1hQArJyrA1rq+XRe0u/olhdx6vHhfcJPaw3QE/ivVe/VRAT2kh7FEI76t7\ngqVFMDxxAgMBAAECggEABOn+AaPDpj/Kw/Tpx+2FcXwYxUcztLklJ72n5OZCqe1o\naSWcKLaLyMeuGZtGysI+XVy5mFaRSLR8ucXFI5HFRE/CxCFM5HN4aEStUy9RsFNU\n7iSRgpEkSddm/wkjJ4+vT2cqosplaZPkCtjgLeNkgebIYbN+TX0P6C0GU365u2Bi\n5akRSJHTEFNeYLSgSySdg5BvLrUDaJtPx9hmbDsqQYdWOFymgma3u3+4oQEHY1jm\naUlsJsVXI2bOO3ZWWY/TE+o+7xwVvLD2iK8MOeZu0gB3EHtrGzyXTaCkkN9a6qWD\n9219lwHVkN63m4iFZYY5LX/oshWl38lpgxe4P0oRgQKBgQDaCM5WU7Dg9qyDWnmy\nok1+QG+hI/ZOpW8zNKw6r322jHQcNNnsZaI6stsq/NN0AkMQL4XQF+YBFtiTogBm\npPpoi/xYO160Ak/rxfWKuzkC09XU/q0pVSSs+/KmuDKm56FylylxYEwIlJey9WWX\nlu9F4dfGvmgY/ZHLawvRoNgDvwKBgQDIR6u0Ax/VU9c+6084/VFaKSjUD1+K7ZCK\nN9vZVCaHBVDcMir0iwE5KVDYNSY8QHmBMNOnIuxcnrzoqnYHGVg0HuaZmrauwo5A\nBJl736eaflNJML6q2ygJ5i4YswKxZBTGir27kZ7RilWDIxPiYq7GRV7uDPYfcW34\nZxOpeKQLzwKBgQCDlPLpWEKT0WpVL0Hok1iPC9YSeoCIAAD29x/FnukQRP1BlIe7\nya45HH12GPSHu2G7n+JyrimJmL8FgawaRhA1Dd4xZUsG+ao/0M0Zd1m1oiAXFcds\n/UxP9REAmoM/BOUDIcTJ/mKEfyB5yO0Rqe4mz2AIOhrakhTtnWGZlicnQwKBgGed\nvNWK8EM79xZUQ05msFoHBVqBAZsswSThNVrA0JX2SBlD0zllWSKrn2ncRYXSjYor\nKrVDuilI7s8osZuGnz2H5yH9CxprCZFRT97onRuu04QANgTLEXHdpmec5X3FG4KE\ncRjDg/lAqnEICteK2oU1iqF6DzPBSXXETkXVZnm9AoGAXrl0WZGRLregj5NarXTV\nLb5SozaOoiPN9wExnasR7pMHlGNvKMD2Ime0GJ+t8Bz0L/eWXS1XGIiIBj71XQ8Z\nJR47Qvqt9SokCGh+hUl48eKwgIVYHH9hc0KisI1iYEiDWbY1IRhgrXLQaRMGr0Ql\nIf1Sr4Mp/1KQrCDcv7IYy4A=\n-----END PRIVATE KEY-----\n",
+  "client_email": "future-generation@powerful-balm-416807.iam.gserviceaccount.com",
+  "client_id": "105629727636486073843",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/future-generation%40powerful-balm-416807.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
