@@ -8,7 +8,7 @@ const { tokenGeneration } = tokenProcessor;
 const googleRedirect = async (req, res) => {
   const fullUrl = `${req.protocol}://${req.get("host")}${req.originalUrl}`;
   const urlObj = new URL(fullUrl);
-  console.log(urlObj);
+
   const urlParams = queryString.parse(urlObj.search);
   const code = urlParams.code;
 
